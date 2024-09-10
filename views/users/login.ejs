@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/users/style.css">
+</head>
+<body >
+    <div class="form-container">
+        <h2>Login shopCom</h2>
+        <%
+         if(typeof message !== "undefined"){
+          %>
+          <span id="error" style="color: silver;">
+            <%= message %>
+          </span>
+          <%
+         }
+        %> 
+        <form id="form" action="/login" method="post">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <br>
+                <input type="email" name="email" id="email" placeholder="Your email address" required autocomplete="on">
+             </div>
+             <br><br>
+             <div class="form-group">
+                <label for="password">password</label>
+                <br>
+                <input type="password" name="password" id="password" placeholder="Your password" required autocomplete="off">
+             </div>
+                <br><br>
+                <input type="submit" value="Continue" id="continue-btn">
+                <br><br>
+                <h4>______________or_______________</h4>
+                <br><br>
+                <input   type="submit" id="continue-btn" value="Sign in with Google">
+                <br><br>
+                <p>Don't have an account? <a href="/registration">Sign Up</a></p>
+                <p><a href="">Forget password</a></p>
+            
+        </form>
+    </div>
+    <script>
+        const email = document.getElementById("email");
+        const password = document.getElementById("password");
+        const form =  document.getElementById("form");
+        const error = document.getElementById("error");
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+        function isValidEmail(email) {
+           const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            return regex.test(email);
+       }
+
+       function isValidPassword(password){
+         const minLength = 6;
+         const maxLength = 16;
+
+
+         if(password.length < minLength || password.length > maxLength){
+            return false;
+         }
+         return true
+    
+
+       }
+      form.addEventListener("submit",(event) =>{
+        event.preventDefault()
+        
+        if(email.value == "" || isValidEmail(email)){
+            error.innerHTML = "Email is invalid";
+        }else if(!isValidPassword(password.value)){
+            error.innerHTML = "password should contain min of 6 and max of 16";
+        }else if(!regex.test(password.value)){
+            error.innerHTML = " password should contain min one number and one special character";
+        }else{
+            form.submit();
+        } 
+      })
+       
+
+    </script>
+    
+    
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP VERIFICATION</title>
+    <link rel="stylesheet" href="/users/otpStyle.css">
+</head>
+<body>
+    <div class="container">
+        <h2>OTP VERIFICATION</h2>
+
+        <p>
+            Please type verification code sent to 
+            <span id="mobile">9947997734</span>
+        </p>
+
+        <p >The otp will expire within<span id="timer"></span></p>
+
+        <div class="row">
+            <input type="number">
+            <input type="number">
+            <input type="number">
+            <input type="number">
+        </div>
+        <button type="button">verify OTP</button>
+
+
+        <p>
+            Didn't reveive code?
+            <a href="jaascript:void(0)" id="resendrequest">Resend Code</a>
+        </p>
+    </div>
+    <script src="/views/users/otpverification.ejs"></script>
+</body>
+</html>

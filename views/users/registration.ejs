@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="/users/style.css">
+   
+  
+    
+
+</head>
+<body >
+    <div class="form-container">
+        <h2> Create an account</h2>
+        <input type="submit" value="Create account with google" id="continue-btn">
+        <br>
+        <h4>______________or_______________</h4>
+        <br><br>
+
+        <form  id="form" action="/registration" method="post">
+            <% 
+              if(typeof message !== "undefined"){
+                %>
+                <span style="color: silver;" id="message">
+                    <%= message %>
+                </span>
+               <% 
+              }
+            %>
+               
+            
+            <br>
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <br>
+                <input type="email" id="email" name="email" placeholder="Enter your email address"   autocomplete="off">
+                
+             
+                
+                    
+                 
+             </div>
+             <br><br>
+             <div class="form-group">
+                <label for="fullname">Full Name:</label>
+                <br>
+                <input type="text" id="fullname" name="fullname" placeholder="Enter your full name"  required autocomplete="off">
+                
+             </div>
+             <br><br>
+             <div class="form-group">
+                <label for="password">password:</label>
+                <br>
+                <input type="password" id="password" name="password" placeholder="Enter your password"  required autocomplete="off">
+                
+             </div>
+             <br><br>
+             <div class="form-group">
+                <label for="confirmpassword">Confirm password:</label>
+                <br>
+                <input type="password" id="confirmpassword" name="cfmpassword" placeholder="confirm password"  required autocomplete="off">
+                <br><br>
+                <input type="submit" value="Create an account" id="continue-btn"   >
+                <br><br>
+                
+                <p>Already have an account? <a href="/login">Login</a></p>
+                
+            
+        </form>
+      
+    </div>
+
+    <script>
+        try {
+            const email = document.getElementById("email");
+       const fullname = document.getElementById("fullname");
+       const password = document.getElementById("password");
+       const form = document.getElementById("form");
+       const error = document.getElementById("message");
+       const cfmpassword = document.getElementById("confirmpassword")
+
+
+       function isValidEmail(email) {
+           const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+            return regex.test(email);
+       }
+       function isValidPassword(password){
+        const minLength = 6;
+        const maxLength = 16;
+
+
+        if(password.length < minLength || password.length > maxLength){
+            return false;
+        }
+        return true;
+    
+
+       }
+      
+       form.addEventListener("submit",(event) =>{
+      
+        event.preventDefault();
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        if(email.value === "" || !isValidEmail(email.value)){
+            error.innerHTML = "Email is invalid"
+        }else if(fullname.value === ""){
+            error.innerText = "Enter a valid name"
+        }
+        else if(isValidPassword(password.value)){
+            error.innerHTML = "password should contain atleast 6 characters and maximum 16 characters"
+        }else if(!regex.test(password.value)){
+            
+              error.innerHTML = " password should contain min one number and one special character";
+        }else if(password.value !== cfmpassword.value){
+               error.innerHTML = "confirm password is not matching to password you have entered";
+        }
+        else{
+            form.submit();
+        }
+       }) 
+        } catch (error) {
+            console.log(error.message)
+        }
+      
+       
+    </script>
+    
+</body>
+</html>
+<body>
+    
+</body>
+</html>
