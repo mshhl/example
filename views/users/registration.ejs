@@ -101,11 +101,13 @@
        form.addEventListener("submit",(event) =>{
       
         event.preventDefault();
-        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+        const regex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/
         if(email.value === "" || !isValidEmail(email.value)){
+         
             error.innerHTML = "Email is invalid"
+            
         }else if(fullname.value === ""){
-            error.innerText = "Enter a valid name"
+            error.innerHTML = "Enter a valid name"
         }
         else if(isValidPassword(password.value)){
             error.innerHTML = "password should contain atleast 6 characters and maximum 16 characters"
